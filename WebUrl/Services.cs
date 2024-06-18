@@ -1,22 +1,33 @@
 ﻿using System.Diagnostics;
+using UIAutomationClient;
+using TreeScope = UIAutomationClient.TreeScope;
 
 namespace WebUrl
 {
-    public static class Services
+    public static class ServiceListener 
     {
-        public static string GetURL(Process process)
+        public static string GetBrowserUrl(Process process)
         {
-            if (process == null)
-                throw new ArgumentNullException("process");
+            string result = string.Empty;
 
-            if (process.MainWindowHandle == IntPtr.Zero)
-                return null;
+            CUIAutomation _automation = new CUIAutomation();
 
-            //AutomationElement elm = AutomationElement.FromHandle(process.MainWindowHandle);
-            //if (elm == null)
-            //    return null;
+            IUIAutomationElement elm = _automation.ElementFromHandle(process.MainWindowHandle);
+            IUIAutomationCondition Cond = _automation.CreatePropertyCondition(30003, 50004);
+            IUIAutomationElementArray elm2 = elm.FindAll(TreeScope.TreeScope_Descendants, Cond);
+            for (int i = 0; i < elm2.Length; i++)
+            {
+                IUIAutomationElement elm3 = elm2.GetElement(i);
+                IUIAutomationValuePattern val = (IUIAutomationValuePattern)elm3.GetCurrentPattern(10002);
+                if (val.CurrentValue != "")
+                {
+                    return val.CurrentValue;
+                }
+            }
 
-            return string.Empty;
+            return result;
         }
     }
+
+    
 }

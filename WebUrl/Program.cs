@@ -1,28 +1,79 @@
-﻿using System.Diagnostics;
-using System.Windows.Automation;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System.Diagnostics;
+using WebUrl;
 
-Process[] procsChrome = Process.GetProcessesByName("firefox");
-foreach (Process chrome in procsChrome)
+namespace MyWindowsService
 {
-    if (chrome.MainWindowHandle == IntPtr.Zero)
+    public class Program
     {
-        continue;
+        public static void Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureServices((hostContext, services) =>
+                {
+                    services.AddHostedService<MyService>();
+                });
     }
 
-    AutomationElement elm = AutomationElement.FromHandle(chrome.MainWindowHandle);
-    AutomationElement elmUrlBar = elm.FindFirst(TreeScope.Descendants,
-      new PropertyCondition(AutomationElement.NameProperty, "Search or enter web address"));
 
-    if (elmUrlBar != null)
+
+    public class MyService : IHostedService
     {
-        AutomationPattern[] patterns = elmUrlBar.GetSupportedPatterns();
-        if (patterns.Length > 0)
+        public Task StartAsync(CancellationToken cancellationToken)
         {
-            ValuePattern val = (ValuePattern)elmUrlBar.GetCurrentPattern(patterns[0]);
-            Console.WriteLine("Chrome URL found: " + val.Current.Value);
+            Console.WriteLine("Service starting...");
+
+            foreach (Process process in Process.GetProcessesByName("chrome"))
+            {
+                if (process.MainWindowHandle == IntPtr.Zero)
+                {
+                    continue;
+                }
+
+                string url = ServiceListener.GetBrowserUrl(process);
+                if (url == null)
+                    continue;
+                Console.WriteLine($"chrome active tab: {url}");
+            }
+
+            foreach (Process process in Process.GetProcessesByName("firefox"))
+            {
+                if (process.MainWindowHandle == IntPtr.Zero)
+                {
+                    continue;
+                }
+
+                string url = ServiceListener.GetBrowserUrl(process);
+                if (url == null)
+                    continue;
+                Console.WriteLine($"firefox active tab: {url}");
+            }
+
+            foreach (Process process in Process.GetProcessesByName("msedge"))
+            {
+                if (process.MainWindowHandle == IntPtr.Zero)
+                {
+                    continue;
+                }
+
+                string url = ServiceListener.GetBrowserUrl(process);
+                if (url == null)
+                    continue;
+                Console.WriteLine($"edge active tab: {url}");
+            }
+
+            return Task.CompletedTask;
+        }
+
+        public Task StopAsync(CancellationToken cancellationToken)
+        {
+            Console.WriteLine("Service stopping...");
+            return Task.CompletedTask;
         }
     }
 }
-
-Console.WriteLine("Enter to exit.");
-Console.ReadLine();
