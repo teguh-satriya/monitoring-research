@@ -7,11 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileEncryption", "FileEncry
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebUrl", "WebUrl\WebUrl.csproj", "{29B41938-827E-471D-A53C-348345FFA86E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstalledApp", "InstalledApp\InstalledApp.csproj", "{AB6B1188-4DE3-4790-94B8-DA1EA73D9353}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstalledApp", "InstalledApp\InstalledApp.csproj", "{AB6B1188-4DE3-4790-94B8-DA1EA73D9353}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Location", "Location\Location.csproj", "{D0C72FC0-EA60-47AE-8341-9199EBA56EA6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Browser", "Browser\Browser.csproj", "{F4C878DD-DF59-4286-942D-A97EC4AFD244}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActiveWindow", "ActiveWindow\ActiveWindow.csproj", "{3BBFBB64-604F-42BC-9DA4-94542E402BAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{F4C878DD-DF59-4286-942D-A97EC4AFD244}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4C878DD-DF59-4286-942D-A97EC4AFD244}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4C878DD-DF59-4286-942D-A97EC4AFD244}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BBFBB64-604F-42BC-9DA4-94542E402BAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BBFBB64-604F-42BC-9DA4-94542E402BAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BBFBB64-604F-42BC-9DA4-94542E402BAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BBFBB64-604F-42BC-9DA4-94542E402BAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
