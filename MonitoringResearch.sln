@@ -15,7 +15,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Browser", "Browser\Browser.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActiveWindow", "ActiveWindow\ActiveWindow.csproj", "{3BBFBB64-604F-42BC-9DA4-94542E402BAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemInfo", "SystemInfo\SystemInfo.csproj", "{27848DA6-4571-4196-B39B-7DD956AA9A8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemInfo", "SystemInfo\SystemInfo.csproj", "{27848DA6-4571-4196-B39B-7DD956AA9A8B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{48E8EDFC-FC06-4780-97B6-63B21D72A0F0}"
+	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.md = CHANGELOG.md
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
